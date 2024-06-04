@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    container_name: app
+    ports:
+      - ${APP_PORT}:4444
+    env_file:
+      - .env
+    volumes:
+      - ./app:/home/seunghui/app
+    command: ["/usr/sbin/init"]
+    
+    oracle:
+      image: gvenzl/oracle-xe:11  #system/oracle
+      container_name: oracle
+      ports:
+        - ${ORACLE_PORT}:1521
+      environment:
+        - ORACLE_HOST=${ORACLE_HOST}
+        - ORACLE_PORT=${ORACLE_PORT}
+        - ORACLE_PASSWORD=${ORACLE_PASSWORD}
+        - ORACLE_DATABASE=${ORACLE_DATABASE}
+        - ORACLE_APP_USER=${ORACLE_APP_USER}
+        - ORACLE_APP_USER_PASSWORD=${ORACLE_APP_USER_PASSWORD}
+        - ORACLE_CHARACTERSET=${ORACLE_CHARACTERSET}
+      volumes:
+        - ./oracle/oradata:/u01/app/oracle/oradata
