@@ -27,3 +27,7 @@ services:
         - ORACLE_CHARACTERSET=${ORACLE_CHARACTERSET}
       volumes:
         - ./oracle/oradata:/u01/app/oracle/oradata
+        # - ./oracle/oradata:/opt/oracle/oradata
+        # - ./oracle/scripts/startup:/opt/oracle/scripts/startup
+        # - ./oracle/scripts/startdb.sql:/u01/app/oracle-product/11.2.0/xe/config/scripts/startdb.sql
+        
